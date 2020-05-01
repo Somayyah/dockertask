@@ -1,4 +1,4 @@
-# dockertask
+# docker task - Build a wordpress wobsite that interacts with bookstack
 
 A docker example to understand docker architecture:
 
