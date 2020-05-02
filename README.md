@@ -18,6 +18,15 @@ ________________________________________________________________________________
   $ docker network create wordpress<br>
   $ docker network create database<br>
   $ docker network create bookshelf<br>
-  ![docker network ls](https://github.com/Somayyah/dockertask/blob/master/networkls.png)
+  ![docker network ls](https://github.com/Somayyah/dockertask/blob/master/networkls.png)<br>
   
-2. 
+2. Deploy two mysql databases: wordpress and bookshelf<br>
+Since we are adding two databases withen the same mysql container, we need to do the following:<br>
+  * create a file to identify the second database (Bookshelf) that will be mounted into /docker-entrypoint-initdb.d.<br>
+  File name:<br>
+  content:<br>
+  ```
+  CREATE DATABASE IF NOT EXISTS bookshelf;
+  GRANT ALL PRIVILEGES ON bookshelf.* TO 'somayyah' identified by 'rootaccess';
+  ```
+  
