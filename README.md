@@ -22,11 +22,17 @@ ________________________________________________________________________________
   
 2. Deploy two mysql databases: wordpress and bookshelf<br>
 Since we are adding two databases withen the same mysql container, we need to do the following:<br>
-  * create a file to identify the second database (Bookshelf) that will be mounted into /docker-entrypoint-initdb.d.<br>
-  File name:<br>
-  content:<br>
+  * In your project folder, create a file to identify the second database (Bookshelf.sql).<br>
   ```
   CREATE DATABASE IF NOT EXISTS bookshelf;
   GRANT ALL PRIVILEGES ON bookshelf.* TO 'somayyah' identified by 'rootaccess';
   ```
-  
+  * To mount bookshelf.sql into /docker-entrypoint-initdb.d create a Dockerfile with the following lines:
+  ```
+  FROM mysql:5.7
+COPY ./bookshelf.sql /docker-entrypoint-initdb.d/bookshelf.sql
+  ```
+  * Build an image of the database:
+  ```
+  docker build -t custom_mysql -f Dockerfile .</code>
+  ```
