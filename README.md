@@ -70,3 +70,7 @@ On your browser type: http://machine_IP:5353.<br>
 When prompted to login, use admin@admin.com, password: password<br>
 After logging in: <br>
 ![logged in](https://github.com/Somayyah/dockertask/blob/master/logedin.png)<br><br>
+
+____________________________________________________________________________________________________________________________
+# Connectivity tests:
+
