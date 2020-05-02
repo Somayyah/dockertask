@@ -6,10 +6,10 @@ A docker example to understand docker architecture:
 **Step 2** deploy a second container called bookshelf from https://hub.docker.com/r/linuxserver/bookstack, and attach it to bookshelf network<br>
 **Step 3** deploy a mysql database container, and attach it to database network<br>
 **Step 4** mysql server should contain two databases: for wordpress and bookshelf.<br>
-**Step 5** Both the wordpress container and bookshelf *_should be able to_* comunicate with their corresponding mysql databases.<br>
+**Step 5** Both the wordpress container and bookshelf *_should be able to_* comunicate with their corresponding mysql databases while being simultaneously isolated from each other.<br>
 **Step 6** Define the following entry points for users to use:<br>
 1. My IP:4321 - for wordpress<br>
-2. My IP:4464 - for bookstack<br>
+2. My IP:5353 - for bookstack<br>
 
 _________________________________________________________________________________________________________________________
 
@@ -19,7 +19,7 @@ ________________________________________________________________________________
   $ docker network create database<br>
   $ docker network create bookshelf<br>
   ```
-  ![docker network ls](https://github.com/Somayyah/dockertask/blob/master/networkls.png)<br>
+  ![docker network ls](https://github.com/Somayyah/dockertask/blob/master/networkls.png)<br><br>
   
 2. Deploy two mysql databases: wordpress and bookshelf<br>
 
@@ -51,7 +51,7 @@ $ docker exec -it e10b78d2449 /bin/bash   # to interact with mysql
 mysql> show databases;
 ```
 If configuration is correct, both bookshelf and wordpress should be present in the table.<br>
-![show databases](https://github.com/Somayyah/dockertask/blob/master/showdb.png)<br>
+![show databases](https://github.com/Somayyah/dockertask/blob/master/showdb.png)<br><br>
 3. Deploy nginx/wordpress container and attach it to the database and wordpress networks<br>
 ```
 docker run -e WORDPRESS_DB_PASSWORD=rootaccess --network database --name wordpress --link mysqldb:mysql -p 0.0.0.0:4321:80 -v "$PWD/html":/var/www/html -d wordpress
@@ -60,5 +60,13 @@ to verify connection:<br>
   ```
 # cat /wp-config.php    ===> inside wordpress container
   ```
-![connected?](https://github.com/Somayyah/dockertask/blob/master/connected.png)<br>
-
+![connected?](https://github.com/Somayyah/dockertask/blob/master/connected.png)<br><br>
+4. Deploy bookshelf from https://hub.docker.com/r/linuxserver/bookstack and attach it to bookshelf database, and netword
+database with:<br>
+```
+docker run --name=bookstack -e PUID=1000 -e PGID=1000 -e DB_HOST=mysqldb -e DB_USER=somayyah -e DB_PASS=rootaccess -e DB_DATABASE=bookshelf --network database -p 0.0.0.0:5353:80 -v "$PWD/bookshelf":/config -d linuxserver/bookstack
+```
+On your browser type: http://machine_IP:5353.<br>
+When prompted to login, use admin@admin.com, password: password<br>
+After logging in: <br>
+![logged in](https://github.com/Somayyah/dockertask/blob/master/logedin.png)<br><br>
