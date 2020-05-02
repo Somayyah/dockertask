@@ -41,8 +41,14 @@ COPY ./bookshelf.sql /docker-entrypoint-initdb.d/bookshelf.sql
 To verify if build is successful:<br>
 ![mysqldb image](https://github.com/Somayyah/dockertask/blob/master/mysqldb.png)<br>
 * Now we can run our mysql container:<br>
-* Finally we can run our container:
 ```
 docker run --name mysqldb -e MYSQL_ROOT_PASSWORD=rootaccess -e MYSQL_USER=somayyah -e MYSQL_PASSWORD=rootaccess -e MYSQL_DATABASE=wordpress  --network database -d mysqldb
 ```
-
+* To verify the mysql configuration:
+```
+$ docker exec -it e10b78d2449 /bin/bash   # to interact with mysql
+# mysql -u root -p      # to access mysql as root
+mysql> show databases;
+```
+If configuration is correct, both bookshelf and wordpress should be present in the table.<br>
+![show databases](https://github.com/Somayyah/dockertask/blob/master/showdb.png)<br>
