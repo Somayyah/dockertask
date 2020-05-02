@@ -52,3 +52,11 @@ mysql> show databases;
 ```
 If configuration is correct, both bookshelf and wordpress should be present in the table.<br>
 ![show databases](https://github.com/Somayyah/dockertask/blob/master/showdb.png)<br>
+3. Deploy nginx/wordpress container and attach it to the database and wordpress networks<br>
+```
+docker run -e WORDPRESS_DB_PASSWORD=rootaccess --network database --name wordpress --link mysqldb:mysql -p 0.0.0.0:4321:80 -v "$PWD/html":/var/www/html -d wordpress
+```
+to verify connection:<br>
+# cat /wp-config.php    ===> inside wordpress container
+![connected?](https://github.com/Somayyah/dockertask/blob/master/connected.png)<br>
+
