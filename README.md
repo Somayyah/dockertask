@@ -72,5 +72,4 @@ After logging in: <br>
 ![logged in](https://github.com/Somayyah/dockertask/blob/master/logedin.png)<br><br>
 
 ____________________________________________________________________________________________________________________________
-# Connectivity tests:
 
