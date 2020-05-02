@@ -38,9 +38,11 @@ COPY ./bookshelf.sql /docker-entrypoint-initdb.d/bookshelf.sql
   ```
   docker build -t custom_mysql -f Dockerfile .
   ```
-* Now we can run our mysql container:<br>
-```
-docker build -t mysqldb -f Dockerfile .
-```
 To verify if build is successful:<br>
 ![mysqldb image](https://github.com/Somayyah/dockertask/blob/master/mysqldb.png)<br>
+* Now we can run our mysql container:<br>
+* Finally we can run our container:
+```
+docker run --name mysqldb -e MYSQL_ROOT_PASSWORD=rootaccess -e MYSQL_USER=somayyah -e MYSQL_PASSWORD=rootaccess -e MYSQL_DATABASE=wordpress  --network database -d mysqldb
+```
+
