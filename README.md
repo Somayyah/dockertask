@@ -27,7 +27,7 @@ Since we are adding two databases withen the same mysql container, we need to do
   * In your project folder, create a file to identify the second database (Bookshelf.sql).<br>
   ```
   CREATE DATABASE IF NOT EXISTS bookshelf;
-  GRANT ALL PRIVILEGES ON bookshelf.* TO 'somayyah' identified by 'rootaccess';
+  GRANT ALL PRIVILEGES ON bookshelf.* TO 'user' identified by 'pass';
   ```
   * To mount bookshelf.sql into /docker-entrypoint-initdb.d create a Dockerfile with the following lines:<br>
   ```
@@ -42,7 +42,7 @@ To verify if build is successful:<br>
 ![mysqldb image](https://github.com/Somayyah/dockertask/blob/master/mysqldb.png)<br>
 * Now we can run our mysql container:<br>
 ```
-docker run --name mysqldb -e MYSQL_ROOT_PASSWORD=rootaccess -e MYSQL_USER=somayyah -e MYSQL_PASSWORD=rootaccess -e MYSQL_DATABASE=wordpress  --network database -d mysqldb
+docker run --name mysqldb -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_USER=somayyah -e MYSQL_PASSWORD=pass -e MYSQL_DATABASE=wordpress  --network database -d mysqldb
 ```
 * To verify the mysql configuration:
 ```
@@ -54,7 +54,7 @@ If configuration is correct, both bookshelf and wordpress should be present in t
 ![show databases](https://github.com/Somayyah/dockertask/blob/master/showdb.png)<br><br>
 3. Deploy nginx/wordpress container and attach it to the database and wordpress networks<br>
 ```
-docker run -e WORDPRESS_DB_PASSWORD=rootaccess --network database --name wordpress --link mysqldb:mysql -p 0.0.0.0:4321:80 -v "$PWD/html":/var/www/html -d wordpress
+docker run -e WORDPRESS_DB_PASSWORD=pass --network database --name wordpress --link mysqldb:mysql -p 0.0.0.0:4321:80 -v "$PWD/html":/var/www/html -d wordpress
 ```
 to verify connection:<br>
   ```
@@ -64,7 +64,7 @@ to verify connection:<br>
 4. Deploy bookshelf from https://hub.docker.com/r/linuxserver/bookstack and attach it to bookshelf database, and netword
 database with:<br>
 ```
-docker run --name=bookstack -e PUID=1000 -e PGID=1000 -e DB_HOST=mysqldb -e DB_USER=somayyah -e DB_PASS=rootaccess -e DB_DATABASE=bookshelf --network database -p 0.0.0.0:5353:80 -v "$PWD/bookshelf":/config -d linuxserver/bookstack
+docker run --name=bookstack -e PUID=1000 -e PGID=1000 -e DB_HOST=mysqldb -e DB_USER=somayyah -e DB_PASS=pass -e DB_DATABASE=bookshelf --network database -p 0.0.0.0:5353:80 -v "$PWD/bookshelf":/config -d linuxserver/bookstack
 ```
 On your browser type: http://machine_IP:5353.<br>
 When prompted to login, use admin@admin.com, password: password<br>
