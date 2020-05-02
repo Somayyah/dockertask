@@ -2,12 +2,12 @@
 
 A docker example to understand docker architecture:
 
-**Task 1** deploy a wordpress/nginx website (two containers), and attach them to wordpress network<br>
-**Task 2** deploy a second container called bookshelf from https://hub.docker.com/r/linuxserver/bookstack, and attach it to bookshelf network<br>
-**Task 3** deploy a mysql database container, and attach it to database network<br>
-**Task 4** mysql server should contain two databases: for wordpress and bookshelf.<br>
-**Task 5** Both the wordpress container and bookshelf *_should be able to_* comunicate with their corresponding mysql databases while being simultaneously isolated from each other.<br>
-**Task 6** Define the following entry points for users to use:<br>
+**Task 1** deploy a wordpress/nginx website (two containers), and attach them to wordpress network<br><br>
+**Task 2** deploy a second container called bookshelf from https://hub.docker.com/r/linuxserver/bookstack, and attach it to bookshelf network<br><br>
+**Task 3** deploy a mysql database container, and attach it to database network<br><br>
+**Task 4** mysql server should contain two databases: for wordpress and bookshelf.<br><br>
+**Task 5** Both the wordpress container and bookshelf *_should be able to_* comunicate with their corresponding mysql databases while being simultaneously isolated from each other.<br><br>
+**Task 6** Define the following entry points for users to use:<br><br>
 1. My IP:4321 - for wordpress<br>
 2. My IP:5353 - for bookstack<br>
 
