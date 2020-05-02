@@ -36,7 +36,7 @@ COPY ./bookshelf.sql /docker-entrypoint-initdb.d/bookshelf.sql
   ```
   * Build an image of the database:<br>
   ```
-  docker build -t custom_mysql -f Dockerfile .
+  docker build -t mysqldb -f Dockerfile .
   ```
 To verify if build is successful:<br>
 ![mysqldb image](https://github.com/Somayyah/dockertask/blob/master/mysqldb.png)<br>
