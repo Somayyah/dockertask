@@ -15,9 +15,9 @@ ________________________________________________________________________________
 
 1. Create the needed networks:<br>
   ```
-  $ docker network create wordpress<br>
-  $ docker network create database<br>
-  $ docker network create bookshelf<br>
+  $ docker network create wordpress
+  $ docker network create database
+  $ docker network create bookshelf
   ```
   ![docker network ls](https://github.com/Somayyah/dockertask/blob/master/networkls.png)<br><br>
   
