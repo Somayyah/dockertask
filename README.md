@@ -14,25 +14,33 @@ A docker example to understand docker architecture:
 _________________________________________________________________________________________________________________________
 
 1. Create the needed networks:<br>
-
+  ```
   $ docker network create wordpress<br>
   $ docker network create database<br>
   $ docker network create bookshelf<br>
+  ```
   ![docker network ls](https://github.com/Somayyah/dockertask/blob/master/networkls.png)<br>
   
 2. Deploy two mysql databases: wordpress and bookshelf<br>
+
 Since we are adding two databases withen the same mysql container, we need to do the following:<br>
   * In your project folder, create a file to identify the second database (Bookshelf.sql).<br>
   ```
   CREATE DATABASE IF NOT EXISTS bookshelf;
   GRANT ALL PRIVILEGES ON bookshelf.* TO 'somayyah' identified by 'rootaccess';
   ```
-  * To mount bookshelf.sql into /docker-entrypoint-initdb.d create a Dockerfile with the following lines:
+  * To mount bookshelf.sql into /docker-entrypoint-initdb.d create a Dockerfile with the following lines:<br>
   ```
   FROM mysql:5.7
 COPY ./bookshelf.sql /docker-entrypoint-initdb.d/bookshelf.sql
   ```
-  * Build an image of the database:
+  * Build an image of the database:<br>
   ```
-  docker build -t custom_mysql -f Dockerfile .</code>
+  docker build -t custom_mysql -f Dockerfile .
   ```
+* Now we can run our mysql container:<br>
+```
+docker build -t mysqldb -f Dockerfile .
+```
+To verify if build is successful:<br>
+![mysqldb image](https://github.com/Somayyah/dockertask/blob/master/mysqldb.png)<br>
