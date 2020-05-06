@@ -72,6 +72,10 @@ After logging in: <br>
 ![logged in](https://github.com/Somayyah/dockertask/blob/master/logedin.png)<br><br>
 
 ____________________________________________________________________________________________________________________________
-### Isolating Bookshelf container from wordpress container using ACLs:
-
+### Isolating Bookshelf container from wordpress container using iptables:<br>
+_**Initially**_ both bookstack and wordpress can ping each other:<br>
+Wordpress to bookstack:<br>
+![connected?](https://github.com/Somayyah/dockertask/blob/master/pingbookword.png)<br>
+Bookstack to wordpress:
+![connected?](https://github.com/Somayyah/dockertask/blob/master/pingwb.png)<br>
 
