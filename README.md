@@ -76,6 +76,8 @@ ________________________________________________________________________________
 _**Initially**_ both bookstack and wordpress can ping each other:<br>
 Wordpress to bookstack:<br>
 ![connected?](https://github.com/Somayyah/dockertask/blob/master/pingbookword.png)<br>
-Bookstack to wordpress:
+Bookstack to wordpress:<br>
 ![connected?](https://github.com/Somayyah/dockertask/blob/master/pingwb.png)<br>
+
+Using iptables, we can isolate both containers from eachother. Rules are added to the DOCKER-USER chain NOT DOCKER chain.
 
